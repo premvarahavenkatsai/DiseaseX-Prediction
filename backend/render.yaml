@@ -15,4 +15,4 @@ services:
     healthCheckPath: /health
     healthCheckTimeout: 300
     initialDeployHook: python -c "import time; time.sleep(60)"
-    autoDeploy: false
+    autoDeploy: true
