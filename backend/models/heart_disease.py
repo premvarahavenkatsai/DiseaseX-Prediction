@@ -455,23 +455,25 @@ class HeartDiseaseModel(BaseModel):
     def load_model(self):
         """Load the trained model and associated components"""
         try:
-            # Create model directory path
-            self.model_dir = os.path.join('trained_models', 'heart_disease_best_model')
-            
-            # Define file paths
-            model_path = os.path.join(self.model_dir, 'model.pkl')
+            base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+            self.model_dir = os.path.join(base_dir, 'trained_models', 'heart_disease_best_model')
+            if not os.path.exists(self.model_dir):
+                self.model_dir = os.path.join('trained_models', 'heart_disease_best_model')
+
+            joblib_path = os.path.join(self.model_dir, 'model.joblib')
+            pkl_path = os.path.join(self.model_dir, 'model.pkl')
             metrics_path = os.path.join(self.model_dir, 'metrics.json')
             
-            # Check if model directory exists
-            if not os.path.exists(self.model_dir):
-                print(f"Model directory not found at {self.model_dir}")
-                return False
-            
-            # Load the model
-            if os.path.exists(model_path):
-                self.model = joblib.load(model_path)
-                print(f"Model loaded from {model_path}")
+            # Load the model from joblib or pkl
+            if os.path.exists(joblib_path):
+                self.model = joblib.load(joblib_path)
+                print(f"Model loaded from {joblib_path}")
+            elif os.path.exists(pkl_path):
+                self.model = joblib.load(pkl_path)
+                print(f"Model loaded from {pkl_path}")
             else:
+                print(f"Model file not found in {self.model_dir}")
+                return False
                 print(f"Model file not found at {model_path}")
                 return False
             
