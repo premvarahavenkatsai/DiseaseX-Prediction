@@ -4,7 +4,7 @@ import axios from 'axios';
 // Use the actual IP address of the backend server
 // In production, this should be set to your deployed backend URL
 // For local development, it will fall back to localhost
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://diseasex-prediction.onrender.com';
 
 // Create axios instance with CORS settings
 const api = axios.create({
