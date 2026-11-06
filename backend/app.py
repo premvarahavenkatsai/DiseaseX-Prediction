@@ -58,7 +58,7 @@ def index():
             "breast_cancer": "/api/predict/breast-cancer",
             "symptom_disease": "/api/predict/symptom"
         },
-        "documentation": "https://github.com/Sayandip-Jana/DiseaseX"
+        "documentation": "https://github.com/premvarahavenkatsai/DiseaseX-Prediction"
     })
 
 @app.route('/api/predict/heart', methods=['POST'])
